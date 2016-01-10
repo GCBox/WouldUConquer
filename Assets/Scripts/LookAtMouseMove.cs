@@ -5,7 +5,7 @@ public class LookAtMouseMove : MonoBehaviour {
 
     public new Transform transform;
    
-    private CharacterController _cc;
+    //private CharacterController _cc;
     float moveSpeed=2f;
     public float Dis_Per_Speed;
     public float Base_Speed;
@@ -18,7 +18,7 @@ public class LookAtMouseMove : MonoBehaviour {
     {
         gravity = Vector3.zero;
         transform = GetComponent<Transform>();
-        _cc = GetComponent<CharacterController>();
+        //_cc = GetComponent<CharacterController>();
         _planet = GameObject.FindGameObjectWithTag("Planet").GetComponent<Planet_Gravity>();
     }
 	void Update () {
@@ -41,7 +41,13 @@ public class LookAtMouseMove : MonoBehaviour {
        // Debug.Log(gravity);
         moveDir = framePos - transform.position;
 
-        if ( Vector3.Distance(framePos, worldpos) > 0.1f) _cc.Move(moveDir);
+        if (Vector3.Distance(framePos, worldpos) > 0.1f)
+        {
+            //    _cc.Move(moveDir);
+            Vector3 pos = transform.position;
+            pos += moveDir;
+            transform.position = pos;
+        }
        
 
         //transform.Translate((worldpos - transform.position).normalized * Time.deltaTime * 2.0f);
