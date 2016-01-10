@@ -358,17 +358,18 @@ public class TimedTrailRenderer : MonoBehaviour
                 foreach (Point p in points)
                 {
                     float time = (Time.time - p.timeCreated) / lifeTime;
-                    
+                    time = time * 0.5f + 0.5f;
                     if (p.dead && p.transTime + deadTime < p.timeCreated + lifeTime)
                     {
                         time = (p.transTime - p.timeCreated) / lifeTime + (Time.time - p.transTime) / deadTime;
+                        time = time * 0.5f + 0.5f;
                     }
                     else if (p.highlight)
                     {
                         time = (Time.time - p.transTime) / highlightTime;
                         if (time > 1) time = 1f;
                     }
-                    time = time * 0.5f + 0.5f;
+                    
 
                     Color color = Color.Lerp(Color.white, Color.clear, time);
                     if (colors != null && colors.Length > 0)
@@ -505,6 +506,7 @@ public class TimedTrailRenderer : MonoBehaviour
         _poly2d.points = points_;
 
         bool picked = TestInside();
+        Debug.Log(picked);
 
         i = 0;
         foreach (Point p in points)

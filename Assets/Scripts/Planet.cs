@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Planet : MonoBehaviour {
 
-    public Material material_pick;
+    public Sprite sprite_conquer;
 
     private SpriteRenderer spriteRenderer;
 
@@ -19,6 +19,6 @@ public class Planet : MonoBehaviour {
 
     public void PickPlanet()
     {
-        spriteRenderer.material = material_pick;
+        spriteRenderer.sprite = sprite_conquer;
     }
 }
