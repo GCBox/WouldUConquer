@@ -6,10 +6,9 @@ public class CCMoveByPad : MonoBehaviour {
 
     public float moveSpeed = 1f;
     public float turnSpeed = 360f;
-    public float sampleDistance = 0.2f;
     public float maxSpeed = 3f;
 
-    public TrailPolygonColliderGenerator polygonColliderGenerator;
+    //public TrailPolygonColliderGenerator polygonColliderGenerator;
 
     [HideInInspector]
     public new Transform transform;
@@ -93,11 +92,11 @@ public class CCMoveByPad : MonoBehaviour {
 
     void LateUpdate()
     {
-        if (_move_distance > sampleDistance)
-        {
-            polygonColliderGenerator.AddSegmentsPoints(transform.position);
-            _move_distance = 0f;
-        }
+        //if (_move_distance > sampleDistance)
+        //{
+        //    polygonColliderGenerator.AddSegmentsPoints(transform.position);
+        //    _move_distance = 0f;
+        //}
     }
 
 }
