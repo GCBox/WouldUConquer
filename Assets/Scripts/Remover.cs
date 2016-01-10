@@ -15,12 +15,14 @@ public class Remover : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Remover Enter! - " + other);
 
     }
 
     void OnTriggerExit(Collider other)
     {
-        Debug.Log("Remover detect! - " + other);
+        if (other.CompareTag("Player")) return;
+        Transform parent = other.transform.parent;
+        if (parent != null) Destroy(parent.gameObject);
+        Destroy(other.gameObject);
     }
 }

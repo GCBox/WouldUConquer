@@ -5,7 +5,7 @@ public class LookAtMouseMove : MonoBehaviour {
 
     public new Transform transform;
    
-    //private CharacterController _cc;
+    private CharacterController _cc;
     float moveSpeed=2f;
     public float Dis_Per_Speed;
     public float Base_Speed;
@@ -18,7 +18,6 @@ public class LookAtMouseMove : MonoBehaviour {
         gravity = Vector3.zero;
         transform = GetComponent<Transform>();
         _cc = GetComponent<CharacterController>();
-       
 
     }
 	void Update () {
@@ -42,14 +41,9 @@ public class LookAtMouseMove : MonoBehaviour {
         moveDir = framePos - transform.position;
 
         if (Vector3.Distance(framePos, worldpos) > 0.1f)
-        {
-            //    _cc.Move(moveDir);
-            Vector3 pos = transform.position;
-            pos += moveDir;
-            transform.position = pos;
-        }
+            _cc.Move(moveDir);
+        
        
-
         //transform.Translate((worldpos - transform.position).normalized * Time.deltaTime * 2.0f);
     }
 }
