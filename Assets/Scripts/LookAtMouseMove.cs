@@ -11,7 +11,6 @@ public class LookAtMouseMove : MonoBehaviour {
     public float Base_Speed;
     public float Rotation_Speed;
     public float acceleration;
-    protected Planet_Gravity _planet;
     public Vector3 gravity;
 
     void Awake()
@@ -19,7 +18,7 @@ public class LookAtMouseMove : MonoBehaviour {
         gravity = Vector3.zero;
         transform = GetComponent<Transform>();
         _cc = GetComponent<CharacterController>();
-        _planet = GameObject.FindGameObjectWithTag("Planet").GetComponent<Planet_Gravity>();
+       
     }
 	void Update () {
         Vector3 worldpos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
