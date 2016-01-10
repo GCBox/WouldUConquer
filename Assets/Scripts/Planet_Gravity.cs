@@ -7,6 +7,8 @@ public class Planet_Gravity : MonoBehaviour {
     protected CircleCollider2D Gravity;
     public new Transform transform;
     protected LookAtMouseMove _player;
+    protected GameObject gb;
+   
     float gravityPower = 0.1f;
     public float gravity;
     bool touch;
@@ -15,7 +17,7 @@ public class Planet_Gravity : MonoBehaviour {
         transform = GetComponent<Transform>();
         Gravity = GetComponent<CircleCollider2D>();
         _player = GameObject.FindGameObjectWithTag("Player").GetComponent<LookAtMouseMove>();
-        
+       
     }
     
 	

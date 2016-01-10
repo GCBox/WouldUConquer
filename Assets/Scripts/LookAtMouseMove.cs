@@ -12,6 +12,9 @@ public class LookAtMouseMove : MonoBehaviour {
     public float Rotation_Speed;
     public float acceleration;
     public Vector3 gravity;
+  
+
+    
 
     void Awake()
     {
@@ -19,8 +22,12 @@ public class LookAtMouseMove : MonoBehaviour {
         transform = GetComponent<Transform>();
         _cc = GetComponent<CharacterController>();
        
+        
     }
 	void Update () {
+
+       
+
         Vector3 worldpos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 dir = worldpos - transform.position;
         dir = Vector3.Slerp(transform.right,dir,Time.deltaTime* Rotation_Speed);
