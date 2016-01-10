@@ -506,7 +506,6 @@ public class TimedTrailRenderer : MonoBehaviour
         _poly2d.points = points_;
 
         bool picked = TestInside();
-        Debug.Log(picked);
 
         i = 0;
         foreach (Point p in points)
@@ -544,11 +543,10 @@ public class TimedTrailRenderer : MonoBehaviour
             //Debug.Log(t);
             if (b)
             {
-                retval = true;
                 Debug.Log(t.transform);
 
                 // query to planet
-                t.PickPlanet();
+                retval |= t.PickPlanet();
                 //GameObject.Destroy(t.gameObject);
 
             }

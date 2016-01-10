@@ -7,6 +7,8 @@ public class Planet : MonoBehaviour {
 
     private SpriteRenderer spriteRenderer;
 
+    private bool conquer = false;
+
 	// Use this for initialization
 	void Start () {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -17,8 +19,13 @@ public class Planet : MonoBehaviour {
 	
 	}
 
-    public void PickPlanet()
+    public bool PickPlanet()
     {
+        if (conquer) return false;
+        
         spriteRenderer.sprite = sprite_conquer;
+        conquer = true;
+
+        return true;
     }
 }
