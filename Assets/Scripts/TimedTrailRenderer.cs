@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TimedTrailRenderer : MonoBehaviour
 {
-    public PolygonCollider2D _poly2d;
+    public PolygonCollider2D _poly2d = null;
     //private TimedTrailRenderer trailRenderer;
 
     public ArrayList _segments = new ArrayList();
