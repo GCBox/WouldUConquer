@@ -15,7 +15,7 @@ public class Explosion_parent : MonoBehaviour
         _piece = GameObject.FindGameObjectWithTag("piece").GetComponent<pieceRig>();
         _pieceRig = GameObject.FindGameObjectWithTag("piece").transform;
         rot = 1;
-        explosion_speed += Random.Range(0f, 13f);
+        explosion_speed += Random.Range(0f, 23f);
     }
 
     // Update is called once per frame
@@ -29,7 +29,7 @@ public class Explosion_parent : MonoBehaviour
                 rot = 0;
             }
             
-            transform.Translate(transform.up * Time.deltaTime * explosion_speed/(Vector3.Distance(transform.position, _pieceRig.position)*7f+1));
+            transform.Translate(transform.up * Time.deltaTime * explosion_speed/(Vector3.Distance(transform.position, _pieceRig.position)*9f+1));
             Debug.Log(Vector3.Distance(transform.position, _pieceRig.position));
 
         }

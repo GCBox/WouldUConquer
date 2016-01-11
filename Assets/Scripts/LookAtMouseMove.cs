@@ -46,7 +46,7 @@ public class LookAtMouseMove : MonoBehaviour {
         framePos = Vector3.MoveTowards(transform.position, transform.position + transform.right+ gravity, moveSpeed * Time.deltaTime);
        // Debug.Log(gravity);
         moveDir = framePos - transform.position;
-
+        moveDir.z = 0;
         if ( Vector3.Distance(framePos, worldpos) > 0.1f) _cc.Move(moveDir);
        
 
