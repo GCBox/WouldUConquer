@@ -31,8 +31,8 @@ public class Planet_Gravity : MonoBehaviour {
     {
         Vector3 framePos = Vector3.MoveTowards(_player.transform.position,transform.position, gravityPower * Time.deltaTime);
         Vector3 moveDir = transform.position-framePos ;
-       
-        _player.gravity = moveDir * (gravity / Vector3.Distance(framePos, transform.position));
+        
+        _player.gravity = moveDir * (gravity / (10*Vector3.Distance(framePos, transform.position)* Vector3.Distance(framePos, transform.position)));
             /*
         moveSpeed = Vector3.Distance(framePos, worldpos) * Dis_Per_Speed + Base_Speed;
 
