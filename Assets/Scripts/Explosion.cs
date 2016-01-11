@@ -17,7 +17,7 @@ public class Explosion : MonoBehaviour {
 	void Update () {
 	    if(_piece.destroy==1)
         {
-            angle+=10;
+            angle+=20f;
             if (angle == 361) angle = 0;
            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
            
