@@ -15,6 +15,7 @@ public class TimedTrailRenderer : MonoBehaviour
     [HideInInspector]
     public new Transform transform;
 
+    public float layer = 0f;
 
     public bool emit = true;
     public float emitTime = 0.00f;
@@ -166,7 +167,7 @@ public class TimedTrailRenderer : MonoBehaviour
         lastPosition = transform.position;
         o = new GameObject("Trail");
         o.transform.parent = null;
-        o.transform.position = Vector3.zero;
+        o.transform.position = new Vector3(0f, 0f, layer);
         o.transform.rotation = Quaternion.identity;
         o.transform.localScale = Vector3.one;
         o.AddComponent(typeof(MeshFilter));
@@ -457,6 +458,15 @@ public class TimedTrailRenderer : MonoBehaviour
         //points = new ArrayList();
     }
 
+    public void FadeOut()
+    {
+        foreach (Point p in points)
+        {
+            p.dead = true;
+            p.highlight = false;
+            p.transTime = Time.time;
+        }
+    }
 
     public void AddSegmentsPoints(Vector3 p)
     {
