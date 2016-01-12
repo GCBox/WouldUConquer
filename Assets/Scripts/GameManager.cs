@@ -15,6 +15,11 @@ public class GameManager : MonoBehaviour {
         set { _state = value; }
     }
 
+    void Awake()
+    {
+
+    }
+
 	// Use this for initialization
 	void Start ()
     {
@@ -26,6 +31,16 @@ public class GameManager : MonoBehaviour {
     {
 	
 	}
+
+    void GameBegin()
+    {
+        _player.SetActive(true);
+    }
+
+    void GameOver()
+    {
+        _player.SetActive(false);
+    }
 
 
     void SetState(GameState state)
