@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TimedTrailRenderer : MonoBehaviour
 {
-    public PolygonCollider2D _poly2d = null;
+    private PolygonCollider2D _poly2d = null;
     //private TimedTrailRenderer trailRenderer;
 
     public ArrayList _segments = new ArrayList();
@@ -153,6 +153,12 @@ public class TimedTrailRenderer : MonoBehaviour
     void Awake()
     {
         transform = GetComponent<Transform>();
+
+        GameObject poly2d = new GameObject("__Poly2d");
+        _poly2d = poly2d.AddComponent<PolygonCollider2D>();
+        poly2d.transform.position = Vector3.zero;
+        poly2d.transform.rotation = Quaternion.identity;
+        //_poly2d = poly2d.GetComponent<PolygonCollider2D>();
     }
 
     void Start()

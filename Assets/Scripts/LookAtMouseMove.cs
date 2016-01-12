@@ -18,6 +18,8 @@ public class LookAtMouseMove : MonoBehaviour {
 
     void Awake()
     {
+        GameManager.Instance.RegisterPlayer(gameObject);
+
         gravity = Vector3.zero;
         transform = GetComponent<Transform>();
         _cc = GetComponent<CharacterController>();

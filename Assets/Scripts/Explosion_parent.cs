@@ -30,7 +30,7 @@ public class Explosion_parent : MonoBehaviour
             }
             
             transform.Translate(transform.up * Time.deltaTime * explosion_speed/(Vector3.Distance(transform.position, _pieceRig.position)*9f+1));
-            Debug.Log(Vector3.Distance(transform.position, _pieceRig.position));
+            //Debug.Log(Vector3.Distance(transform.position, _pieceRig.position));
 
         }
     }
