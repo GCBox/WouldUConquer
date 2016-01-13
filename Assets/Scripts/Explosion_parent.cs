@@ -21,17 +21,17 @@ public class Explosion_parent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_piece.destroy == 1)
-        {
-            if (rot == 1)
-            {
-                transform.rotation = Quaternion.AngleAxis(Random.Range(0f, 360f), Vector3.forward);
-                rot = 0;
-            }
+        //if (_piece.destroy == 1)
+        //{
+        //    if (rot == 1)
+        //    {
+        //        transform.rotation = Quaternion.AngleAxis(Random.Range(0f, 360f), Vector3.forward);
+        //        rot = 0;
+        //    }
             
-            transform.Translate(transform.up * Time.deltaTime * explosion_speed/(Vector3.Distance(transform.position, _pieceRig.position)*9f+1));
-            //Debug.Log(Vector3.Distance(transform.position, _pieceRig.position));
+        //    transform.Translate(transform.up * Time.deltaTime * explosion_speed/(Vector3.Distance(transform.position, _pieceRig.position)*9f+1));
+        //    //Debug.Log(Vector3.Distance(transform.position, _pieceRig.position));
 
-        }
+        //}
     }
 }

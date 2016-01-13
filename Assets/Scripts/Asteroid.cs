@@ -3,23 +3,42 @@ using System.Collections;
 
 public class Asteroid : MonoBehaviour {
 
+
+    private new Rigidbody rigidbody;
+
 	// Use this for initialization
-	void Start () {
-	
+	void Start ()
+    {
+        rigidbody = GetComponent<Rigidbody>();
+
+        Vector3 player_pos = GameManager.Instance.PlayerPosition;
+        
+        // initial velocity
+        Vector3 dir = player_pos - transform.position;
+        dir.z = 0;
+
+        //Debug.Log(dir);
+        //dir.Normalize();
+        //Debug.Log(dir);
+        float vel = 0.5f;// GameManager.Instance.Level;
+        rigidbody.velocity = dir * vel;
+        //rigidbody.velocity = player_pos - transform.position;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 	
 	}
 
-    void OnCollisionEnter(Collision other)
+    void OnCollisionEnter(Collision col)
     {
-        if (other.gameObject.tag != "Player") return;
+        if (col.gameObject.tag != "Player") return;
 
         GameManager.Instance.Damage();
+        rigidbody.velocity = -(rigidbody.velocity + col.relativeVelocity);
 
-        Destroy(gameObject);
+        //Destroy(gameObject);
 
     }
 

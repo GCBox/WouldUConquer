@@ -7,18 +7,42 @@ public class pieceRig : MonoBehaviour {
 
     private Vector3 _velocity;
 
+    [HideInInspector]
     private new Transform transform;
-    public int destroy;
+
+    private Explosion[] pieces;
+
+    void Awake()
+    {
+        transform = GetComponent<Transform>();
+        pieces = GetComponentsInChildren<Explosion>();
+    }
+
     // Use this for initialization
     void Start()
     {
-        transform = GetComponent<Transform>();
-        destroy = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.SmoothDamp(transform.position, target.position, ref _velocity, followSpeed);
+        //transform.position = Vector3.SmoothDamp(transform.position, target.position, ref _velocity, followSpeed);
+        transform.position = target.position;
+    }
+
+    public void CreateExplosion()
+    {
+        foreach (Explosion exp in pieces)
+        {
+            exp.CreateExplosion();
+        }
+    }
+
+    public void Reset()
+    {
+        foreach (Explosion exp in pieces)
+        {
+            exp.Reset();
+        }
     }
 }

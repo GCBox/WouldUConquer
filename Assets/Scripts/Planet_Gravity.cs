@@ -5,6 +5,7 @@ public class Planet_Gravity : MonoBehaviour {
 
 
     protected CircleCollider2D Gravity;
+    [HideInInspector]
     public new Transform transform;
     protected LookAtMouseMove _player;
     protected GameObject gb;
@@ -29,6 +30,7 @@ public class Planet_Gravity : MonoBehaviour {
 	}
     void OnTriggerStay(Collider other)
     {
+        if (other.tag != "Player") return;
         Vector3 framePos = Vector3.MoveTowards(_player.transform.position,transform.position, gravityPower * Time.deltaTime);
         Vector3 moveDir = transform.position-framePos ;
         

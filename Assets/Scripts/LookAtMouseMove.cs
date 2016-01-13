@@ -12,9 +12,19 @@ public class LookAtMouseMove : MonoBehaviour {
     public float Rotation_Speed;
     public float acceleration;
     public Vector3 gravity;
-  
 
-    
+    bool moving_animation = false;
+
+    private Vector3 _currentVelocity;
+    public Vector3 currentVelocity
+    {
+        get { return _currentVelocity; }
+    }
+
+    public void MovingAnimation()
+    {
+        moving_animation = true;
+    }
 
     void Awake()
     {
@@ -23,12 +33,16 @@ public class LookAtMouseMove : MonoBehaviour {
         gravity = Vector3.zero;
         transform = GetComponent<Transform>();
         _cc = GetComponent<CharacterController>();
-       
-        
+
     }
 	void Update () {
 
-       
+        if (moving_animation)
+        {
+
+        }
+
+        if (GameManager.Instance.state != GameManager.GameState.Play) return;
 
         Vector3 worldpos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 dir = worldpos - transform.position;
@@ -50,7 +64,8 @@ public class LookAtMouseMove : MonoBehaviour {
         moveDir = framePos - transform.position;
         moveDir.z = 0;
         if ( Vector3.Distance(framePos, worldpos) > 0.1f) _cc.Move(moveDir);
-       
+
+        _currentVelocity = moveDir;//transform.rotation * moveDir / -Time.deltaTime;
 
         //transform.Translate((worldpos - transform.position).normalized * Time.deltaTime * 2.0f);
     }
