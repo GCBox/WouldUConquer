@@ -184,6 +184,32 @@ public class GameManager {
         }
     }
 
+
+
+
+    /////// random gift ///////
+    public void RocketShield()
+    {
+
+    }
+
+    public void StarExplosion()
+    {
+
+    }
+
+    public void AsteroidExplosion()
+    {
+
+    }
+
+    public void SlowDebuff()
+    {
+
+    }
+
+
+
     // delete planet, asteroid, stars, etc.. (spawned objects)
     void DeleteAllSpawnedObjects()
     {
