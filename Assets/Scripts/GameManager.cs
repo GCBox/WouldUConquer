@@ -22,10 +22,26 @@ public class GameManager {
 
     private int _level = 1;
 
+    
+    public void ConquerPlanet(int score)
+    {
+        _score += score;
+        ++_numConquerPlanet;
+
+        ++_numEarnStar;
+
+        Debug.Log("Num of Planet : " + _numConquerPlanet);
+        Debug.Log("Score " + _score);
+    }
+
     public int Level
     {
         get { return _level; }
     }
+
+
+
+
 
     public enum GameState { Main=0, Play, GameOver, Pause }
     private GameState _state = GameState.Main;
@@ -79,6 +95,7 @@ public class GameManager {
     public void GameBegin()
     {
         SetState(GameState.Play);
+        Time.timeScale = 1f;
 
         SetActivateSpawner(true);
         _player_cc.enabled = true;
@@ -89,7 +106,7 @@ public class GameManager {
         _numEarnStar = 0;
         _score = 0;
 
-        _health = 300;
+        _health = 3;
     }
 
     public void GameOver()
@@ -105,6 +122,28 @@ public class GameManager {
         SetActivateSpawner(false);
 
         _player_mover.MovingAnimation();
+    }
+
+    public void GamePause()
+    {
+        if (state == GameState.Play)
+        {
+            Debug.Log("Pause");
+            Time.timeScale = 0f;
+            SetState(GameState.Pause);
+        }
+        else if (state == GameState.Pause)
+        {
+            Debug.Log("Resume");
+            Time.timeScale = 1f;
+            SetState(GameState.Play);
+        }
+    }
+
+    public void GameResume()
+    {
+        Time.timeScale = 1f;
+        SetState(GameState.Play);
     }
 
     public void Damage()

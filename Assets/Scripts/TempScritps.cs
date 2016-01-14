@@ -11,9 +11,14 @@ public class TempScritps : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-        if (Input.GetButton("Jump"))
+        if (Input.GetButton("Fire1"))
         {
             GameManager.Instance.GameBegin();
+        }
+
+        if (Input.GetButtonUp("Jump"))
+        {
+            GameManager.Instance.GamePause();
         }
 	}
 }

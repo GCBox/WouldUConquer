@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Asteroid : MonoBehaviour {
 
-
     private new Rigidbody rigidbody;
 
 	// Use this for initialization
@@ -21,7 +20,10 @@ public class Asteroid : MonoBehaviour {
         //dir.Normalize();
         //Debug.Log(dir);
         float vel = 0.5f;// GameManager.Instance.Level;
-        rigidbody.velocity = dir * vel;
+        rigidbody.velocity = dir;
+        Vector3 random_vel = Random.insideUnitCircle;
+        rigidbody.velocity += random_vel;
+        rigidbody.velocity *= vel;
         //rigidbody.velocity = player_pos - transform.position;
 	}
 	
@@ -36,9 +38,9 @@ public class Asteroid : MonoBehaviour {
         if (col.gameObject.tag != "Player") return;
 
         GameManager.Instance.Damage();
-        rigidbody.velocity = -(rigidbody.velocity + col.relativeVelocity);
+        //rigidbody.velocity = -(rigidbody.velocity + col.relativeVelocity);
 
-        //Destroy(gameObject);
+        Destroy(gameObject);
 
     }
 

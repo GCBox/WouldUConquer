@@ -4,6 +4,7 @@ using System.Collections;
 public class Planet : MonoBehaviour {
 
     public Sprite sprite_conquer;
+    public int score = 100;
 
     private SpriteRenderer spriteRenderer;
 
@@ -25,6 +26,9 @@ public class Planet : MonoBehaviour {
         
         spriteRenderer.sprite = sprite_conquer;
         conquer = true;
+
+        GameManager.Instance.ConquerPlanet(score);
+        
 
         return true;
     }

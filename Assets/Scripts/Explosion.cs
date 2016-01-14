@@ -33,7 +33,7 @@ public class Explosion : MonoBehaviour {
         velocity += (GameManager.Instance.PlayerVelocity * Random.Range(1.2f, 6f));
         velocity.z = 0;
 
-        angleSpeed = Random.Range(-18f, 18f);
+        angleSpeed = Random.Range(-15f, 15f);
         angle = 0;
     }
 
@@ -59,8 +59,8 @@ public class Explosion : MonoBehaviour {
             transform.position = pos;
 
             // damping
-            velocity *= 0.999f;
-            angle *= 0.999f;
+            velocity *= 0.995f;
+            angle *= 0.995f;
         }
 	}
 }

@@ -338,19 +338,29 @@ public class TimedTrailRenderer : MonoBehaviour
             lastRebuildTime = Time.time;
 
             ArrayList remove = new ArrayList();
+            //ArrayList remove_seg = new ArrayList();
             int i = 0;
             foreach (Point p in points)
             {
+                bool add = false;
                 // cull old points first
-                if (p.dead && Time.time - p.transTime > deadTime) remove.Add(p);
-                else if (p.highlight && Time.time - p.transTime > highlightTime) remove.Add(p);
-                else if (Time.time - p.timeCreated > lifeTime) remove.Add(p);
+                if (p.dead && Time.time - p.transTime > deadTime) add = true;
+                else if (p.highlight && Time.time - p.transTime > highlightTime) add = true;
+                else if (Time.time - p.timeCreated > lifeTime) add = true;
 
+                if (add)
+                {
+                    remove.Add(p);
+                    //remove_seg.Add(_segments[i]);
+                }
                 i++;
             }
 
             foreach (Point p in remove) points.Remove(p);
             remove.Clear();
+
+            //foreach (LineSegment s in remove_seg) _segments.Remove(s);
+            //remove_seg.Clear();
 
             if (points.Count > 1)
             {
@@ -466,6 +476,8 @@ public class TimedTrailRenderer : MonoBehaviour
             p.highlight = false;
             p.transTime = Time.time;
         }
+
+        _segments.Clear();
     }
 
     public void AddSegmentsPoints(Vector3 p)
@@ -495,10 +507,16 @@ public class TimedTrailRenderer : MonoBehaviour
 
 
         // delete dead segments
-        if (((LineSegment)_segments[0]).PointDeadP())
+        ArrayList remove = new ArrayList();
+        foreach (LineSegment s in _segments)
         {
-            _segments.RemoveAt(0);
+            if (s.PointDeadP()) remove.Add(s);
         }
+        foreach (LineSegment s in remove) _segments.Remove(s);
+        //if (((LineSegment)_segments[0]).PointDeadP())
+        //{
+        //    _segments.RemoveAt(0);
+        //}
     }
 
     void CreatePolygon(Vector2 end, int offset = 0)
