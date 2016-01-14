@@ -50,7 +50,7 @@ public class GameManager {
 
 
 
-    public enum GameState { Main=0, Play, GameOver, Pause }
+    public enum GameState { Main=0, Tutorial, Play, GameOver, Pause }
     private GameState _state = GameState.Main;
 
     public GameState state

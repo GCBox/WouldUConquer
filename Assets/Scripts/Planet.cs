@@ -47,6 +47,7 @@ public class Planet : MonoBehaviour {
         {
             case 0:
                 // rocket shield
+                GameManager.Instance.RocketShield();
                 break;
 
             case 1:
