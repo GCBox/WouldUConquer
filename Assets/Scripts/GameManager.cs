@@ -9,7 +9,8 @@ public class GameManager {
     private LookAtMouseMove _player_mover;
     private SpriteRenderer _player_render;
     private TimedTrailRenderer _player_trail_render;
-    private pieceRig _piece_rigs;
+    private pieceRig _piece_rig;
+    private CameraRig _camera_rig;
 
     private Spawner[] _spawners;
 
@@ -75,7 +76,8 @@ public class GameManager {
         _player_mover = _player.GetComponent<LookAtMouseMove>();
         _player_render = _player.GetComponentInChildren<SpriteRenderer>();
         _player_trail_render = _player.GetComponentInChildren<TimedTrailRenderer>();
-        _piece_rigs = GameObject.FindGameObjectWithTag("piece").GetComponent<pieceRig>();
+        _piece_rig = GameObject.FindGameObjectWithTag("piece").GetComponent<pieceRig>();
+        _camera_rig = GameObject.FindObjectOfType<CameraRig>();
 
         _spawners = GameObject.FindObjectsOfType<Spawner>();
         SetActivateSpawner(false);
@@ -100,7 +102,8 @@ public class GameManager {
         SetActivateSpawner(true);
         _player_cc.enabled = true;
         _player_render.enabled = true;
-        _piece_rigs.Reset();
+        _player_mover.gravity = Vector3.zero;
+        _piece_rig.Reset();
 
         _numConquerPlanet = 0;
         _numEarnStar = 0;
@@ -115,13 +118,15 @@ public class GameManager {
 
         _player_cc.enabled = false;
         _player_render.enabled = false;
-        _piece_rigs.CreateExplosion();
+        _piece_rig.CreateExplosion();
 
         _player_trail_render.FadeOut();
 
         SetActivateSpawner(false);
 
-        _player_mover.MovingAnimation();
+        MovingAnimation();
+
+        DeleteAllSpawnedObjects();
     }
 
     public void GamePause()
@@ -140,10 +145,10 @@ public class GameManager {
         }
     }
 
-    public void GameResume()
+    void MovingAnimation()
     {
-        Time.timeScale = 1f;
-        SetState(GameState.Play);
+
+        _player_mover.MovingAnimation(2f);
     }
 
     public void Damage()
@@ -161,7 +166,17 @@ public class GameManager {
     // delete planet, asteroid, stars, etc.. (spawned objects)
     void DeleteAllSpawnedObjects()
     {
-        
+
+        // planet
+        GameObject[] planets = GameObject.FindGameObjectsWithTag("Planet");
+        foreach (GameObject obj in planets) GameObject.Destroy(obj);
+
+        // asteroid
+        Asteroid[] asteroids = GameObject.FindObjectsOfType<Asteroid>();
+        foreach (Asteroid asteroid in asteroids) GameObject.Destroy(asteroid.gameObject);
+
+        // star
+
     }
 
 

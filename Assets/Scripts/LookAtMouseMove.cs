@@ -11,6 +11,7 @@ public class LookAtMouseMove : MonoBehaviour {
     public float Base_Speed;
     public float Rotation_Speed;
     public float acceleration;
+    [HideInInspector]
     public Vector3 gravity;
 
     bool moving_animation = false;
@@ -21,7 +22,12 @@ public class LookAtMouseMove : MonoBehaviour {
         get { return _currentVelocity; }
     }
 
-    public void MovingAnimation()
+    public void MovingAnimation(float beginTime)
+    {
+        Invoke("TurnOnMovingAnim", beginTime);
+    }
+
+    void TurnOnMovingAnim()
     {
         moving_animation = true;
     }
