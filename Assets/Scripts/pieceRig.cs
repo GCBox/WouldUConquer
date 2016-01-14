@@ -5,6 +5,13 @@ public class pieceRig : MonoBehaviour {
     public Transform target;
     public float followSpeed = 0.2f;
 
+    private bool activate = false;
+    public bool Active
+    {
+        get { return activate; }
+        set { activate = value; }
+    }
+
     private Vector3 _velocity;
 
     [HideInInspector]
@@ -26,8 +33,11 @@ public class pieceRig : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        //transform.position = Vector3.SmoothDamp(transform.position, target.position, ref _velocity, followSpeed);
-        transform.position = target.position;
+        if (activate)
+        {
+            //transform.position = Vector3.SmoothDamp(transform.position, target.position, ref _velocity, followSpeed);
+            transform.position = target.position;
+        }
     }
 
     public void CreateExplosion()

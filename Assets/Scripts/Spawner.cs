@@ -5,6 +5,8 @@ public class Spawner : MonoBehaviour {
 
     public GameObject[] prefabs;
 
+    public float layer = 0f;
+
     // 얼마나 자주 GameObject가 spawn될 것인가?
     // 초당 생성 횟수
     // 숫자가 클수록 자주 생성
@@ -98,11 +100,12 @@ public class Spawner : MonoBehaviour {
             // random direction
             Vector3 dir = Random.onUnitSphere;
             dir += transform.right * spawnDirection;
-            dir.z = 0;
+            dir.z = 0f;
             dir.Normalize();
 
             dir *= Random.Range(spawnRange_min, spawnRange_max);
             Vector3 target = transform.position + dir;
+            target.z = layer;
 
             Collider[] cols = Physics.OverlapSphere(target, spawnColliderSize);
 

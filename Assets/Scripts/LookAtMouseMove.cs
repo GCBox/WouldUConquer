@@ -14,7 +14,8 @@ public class LookAtMouseMove : MonoBehaviour {
     [HideInInspector]
     public Vector3 gravity;
 
-    bool moving_animation = false;
+
+
 
     private Vector3 _currentVelocity;
     public Vector3 currentVelocity
@@ -22,15 +23,7 @@ public class LookAtMouseMove : MonoBehaviour {
         get { return _currentVelocity; }
     }
 
-    public void MovingAnimation(float beginTime)
-    {
-        Invoke("TurnOnMovingAnim", beginTime);
-    }
 
-    void TurnOnMovingAnim()
-    {
-        moving_animation = true;
-    }
 
     void Awake()
     {
@@ -42,11 +35,6 @@ public class LookAtMouseMove : MonoBehaviour {
 
     }
 	void Update () {
-
-        if (moving_animation)
-        {
-
-        }
 
         if (GameManager.Instance.state != GameManager.GameState.Play) return;
 

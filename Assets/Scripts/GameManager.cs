@@ -23,6 +23,12 @@ public class GameManager {
 
     private int _level = 1;
 
+    private bool _moving_anim = false;
+    public bool MovingAnim
+    {
+        get { return _moving_anim; }
+        set { _moving_anim = value; }
+    }
     
     public void ConquerPlanet(int score)
     {
@@ -96,14 +102,25 @@ public class GameManager {
 
     public void GameBegin()
     {
+        if (_camera_rig.MovingAnim) return;
+        if (state == GameState.Play) return;
+        if (MovingAnim) return;
+
         SetState(GameState.Play);
         Time.timeScale = 1f;
+
+        PlayerPosition = _camera_rig.transform.position;
+        
 
         SetActivateSpawner(true);
         _player_cc.enabled = true;
         _player_render.enabled = true;
+        _player_trail_render.enabled = true;
         _player_mover.gravity = Vector3.zero;
         _piece_rig.Reset();
+
+        _piece_rig.Active = true;
+        _camera_rig.Active = true;
 
         _numConquerPlanet = 0;
         _numEarnStar = 0;
@@ -121,12 +138,16 @@ public class GameManager {
         _piece_rig.CreateExplosion();
 
         _player_trail_render.FadeOut();
+        _player_trail_render.enabled = false;
+
+        _piece_rig.Active = false;
+        _camera_rig.Active = false;
 
         SetActivateSpawner(false);
 
         MovingAnimation();
 
-        DeleteAllSpawnedObjects();
+        //DeleteAllSpawnedObjects();
     }
 
     public void GamePause()
@@ -147,8 +168,8 @@ public class GameManager {
 
     void MovingAnimation()
     {
-
-        _player_mover.MovingAnimation(2f);
+        MovingAnim = true;
+        _camera_rig.MovingAnimation(2f);
     }
 
     public void Damage()
@@ -190,6 +211,12 @@ public class GameManager {
     public Vector3 PlayerPosition
     {
         get { return _player.transform.position; }
+        set
+        {
+            _player.transform.position = value;
+            _camera_rig.transform.position = value;
+            //_piece_rig.transform.position = value;
+        }
     }
 
     public Vector3 PlayerVelocity

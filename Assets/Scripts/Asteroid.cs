@@ -5,6 +5,8 @@ public class Asteroid : MonoBehaviour {
 
     private new Rigidbody rigidbody;
 
+    private Vector3 _velocity;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -20,17 +22,17 @@ public class Asteroid : MonoBehaviour {
         //dir.Normalize();
         //Debug.Log(dir);
         float vel = 0.5f;// GameManager.Instance.Level;
-        rigidbody.velocity = dir;
+        _velocity = dir;
         Vector3 random_vel = Random.insideUnitCircle;
-        rigidbody.velocity += random_vel;
-        rigidbody.velocity *= vel;
+        _velocity += random_vel;
+        _velocity *= vel;
         //rigidbody.velocity = player_pos - transform.position;
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-	
+        transform.position += _velocity * Time.deltaTime;
 	}
 
     void OnCollisionEnter(Collision col)
